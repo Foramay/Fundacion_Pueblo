@@ -1,1 +1,2 @@
 *.pyc
+src/app/settings/local.py
