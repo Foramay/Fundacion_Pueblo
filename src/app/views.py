@@ -5,6 +5,3 @@ def home(request):
     return render(request, template_name, {})
 
 
-def login(request):
-    template_name = 'login.html'
-    return render(request, template_name, {})

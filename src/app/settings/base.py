@@ -18,7 +18,8 @@ AUTH_USER_MODEL = 'usuarios.Usuario'
 
 ALLOWED_HOSTS = []
 
-
+LOGIN_REDIRECT_URL = '/home'
+LOGIN_URL = '/login'
 # Application definition
 
 INSTALLED_APPS = [
