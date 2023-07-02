@@ -66,17 +66,16 @@
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="{% url 'home' %}" class="nav-link px-2 link-secondary">Home</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark">Eventos</a></li>
+          <li><a href="{% url 'eventos:listar' %}" class="nav-link px-2 link-dark">Eventos</a></li>
           <li><a href="#" class="nav-link px-2 link-dark">Recursos</a></li>
       </ul>
-
-      
 
       {% if user.is_authenticated %}
       <a href="{% url 'logout' %}">
         <button type="button" class="btn btn-outline-danger">Logout</button>
       </a>
       {% else %}
+      
         <a href="{% url 'login' %}">
           <button type="button" class="btn btn-outline-success">Login</button>
         </a>
