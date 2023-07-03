@@ -4,7 +4,7 @@
 
 <div class="container">
     {% if user.is_staff %}
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success" role="alert" style="text-align: center;">
             <h1>Hola, {{user}}</h1>
             <a href="{% url 'eventos:crear' %}">
                 <button type="button" class="btn btn-sm btn-outline-success ">Crear Evento</button>
@@ -16,37 +16,46 @@
         </div>
     {% endif %}
 </div>
+    <div class="container">
+        {% if not eventos %}
+            <div class="alert alert-warning" role="alert" style="text-align: center;">
+            Por el momento no hay eventos
+            </div>
     
-    {% for e in eventos  %}
-        <main style="display: flex; align-items: center; justify-content: center;">
-            <div class="album py-5 bg-body-tertiary">
-            <div class="container">
-                <div class="">
-                <div class="col">
-                    <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">{{e.nombre}}</text></svg>
-                    <div class="card-body">
-                        <p class="card-text">{{e.descripcion}}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+        {% else %}
+            {% for e in eventos  %}
+                <main style="display: flex; align-items: center; justify-content: center;">
+                    <div class="album py-5 bg-body-tertiary">
+                    <div class="container">
+                        <div class="">
+                        <div class="col">
+                            <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">{{e.nombre}}</text></svg>
+                            <div class="card-body">
+                                <p class="card-text">{{e.descripcion}}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                </div>
+                                
+                                {% if user.is_staff %}
+                                    <button type="button" class="btn btn-sm btn-outline-warning">Editar</button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger">Eliminar</button> 
+                                {% endif %}
+                                    
+                                </div>
+                            </div>
+                            </div>
                         </div>
-                        
-                        {% if user.is_staff %}
-                            <button type="button" class="btn btn-sm btn-outline-warning">Editar</button>
-                            <button type="button" class="btn btn-sm btn-outline-danger">Eliminar</button> 
-                        {% endif %}
-                            
                         </div>
                     </div>
                     </div>
-                </div>
-                </div>
-            </div>
-            </div>
+                
+                </main>
+            {% endfor %}
+        {% endif %}
         
-        </main>
-    {% endfor %}
+    
         
 
 {% endblock contenido %}
