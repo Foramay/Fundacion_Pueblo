@@ -6,7 +6,11 @@
             <div class="card-body">
               <h5 class="card-title" style="text-align: center;">Crear Eventos</h5>
                 <form action="" method="POST"> {% csrf_token %}
-                    {{form.as_p}}
+                    
+                    {% include 'includes/error_forms.html' %}
+                    <!---->
+                    {% include 'includes/forms.html' %}
+                    <br>
                     <button type="submit" class="btn btn-outline-success btn-sm float-end">Crear</button>
                 </form>
             </div>
