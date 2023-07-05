@@ -4,14 +4,11 @@
     <main class="d-flex justify-content-center">
         <div class="card" style="width: 30rem;">
             <div class="card-body">
-              <h5 class="card-title" style="text-align: center;">Actualizar Eventos</h5>
+              <h5 class="card-title" style="text-align: center;">Eliminar Evento</h5>
                 <form action="" method="POST"> {% csrf_token %}
-                    
-                    {% include 'includes/error_forms.html' %}
-                    <!---->
-                    {% include 'includes/forms.html' %}
+                    <p>¿Estás seguro de eliminar el evento '{{eventos.nombre}}'?</p>
                     <br>
-                    <button type="submit" class="btn btn-outline-warning btn-sm">Actualizar</button>
+                    <button type="submit" class="btn btn-outline-danger btn-sm ">Eliminar</button>
                     <a href="{% url 'eventos:listar' %}">
                         <button type="button" class="btn btn-outline-success btn-sm float-end">Cancelar</button>
                     </a>

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Eventos
 from .forms import EventosForm
 from django.urls import reverse
@@ -28,3 +28,10 @@ class Actualizar(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse('eventos:listar')
 
+class Eliminar(LoginRequiredMixin, DeleteView):
+    model = Eventos
+    template_name = 'eventos/eliminar.html'
+
+
+    def get_success_url(self):
+        return reverse('eventos:listar')
