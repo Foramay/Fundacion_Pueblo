@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from .models import Eventos
 from .forms import EventosForm
 from django.urls import reverse
@@ -19,3 +19,12 @@ class ListarEvents(ListView):
     template_name = 'eventos/listar_eventos.html'
     model = Eventos
     context_object_name = 'eventos'
+
+class Actualizar(LoginRequiredMixin, UpdateView):
+    template_name = 'eventos/actualizar.html'
+    model = Eventos
+    form_class = EventosForm
+
+    def get_success_url(self):
+        return reverse('eventos:listar')
+

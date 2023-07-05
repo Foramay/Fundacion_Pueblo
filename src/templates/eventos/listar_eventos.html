@@ -39,7 +39,9 @@
                                 </div>
                                 
                                 {% if user.is_staff %}
-                                    <button type="button" class="btn btn-sm btn-outline-warning">Editar</button>
+                                    <a href="{% url 'eventos:actualizar' e.id %}">
+                                        <button type="button" class="btn btn-sm btn-outline-warning">Editar</button>
+                                    </a>
                                     <button type="button" class="btn btn-sm btn-outline-danger">Eliminar</button> 
                                 {% endif %}
                                     
