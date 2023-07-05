@@ -11,5 +11,8 @@ urlpatterns = [
     path('logout/', auth_views.logout_then_login, name='logout'),
     
     #Includes de la App 'eventos'
-    path('eventos/', include('eventos.urls'))
+    path('eventos/', include('eventos.urls')),
+
+    #Includes de la App 'eventos'
+    path('usuarios/', include('usuarios.urls'))
 ]
