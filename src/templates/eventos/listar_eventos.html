@@ -34,10 +34,14 @@
                             <div class="card-body">
                                 <p class="card-text">{{e.descripcion}}</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-success">Participar</button>
-                                </div>
-                                
+
+                                    
+                                    <form action="{% url 'eventos:participar' %}" method="POST"> {% csrf_token %}
+                                        <div class="btn-group">
+                                            <input type="hidden" name="evento_id" value="{{ e.id }}">
+                                            <button type="submit" class="btn btn-sm btn-outline-success">Participar</button>
+                                        </div>
+                                    </form>
                                 {% if user.is_staff %}
                                     <a href="{% url 'eventos:actualizar' e.id %}">
                                         <button type="button" class="btn btn-sm btn-outline-warning">Editar</button>

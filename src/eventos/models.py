@@ -15,6 +15,5 @@ class MisEventos(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     evento = models.ForeignKey(Eventos, on_delete=models.CASCADE)
 
-
-    def __str__(self):
-        return self.comentarios
+    def obtener_info(self):
+        return self.evento
