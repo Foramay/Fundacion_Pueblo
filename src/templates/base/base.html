@@ -67,6 +67,11 @@
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="{% url 'home' %}" class="nav-link px-2 link-secondary">Home</a></li>
           <li><a href="{% url 'eventos:listar' %}" class="nav-link px-2 link-dark">Eventos</a></li>
+          
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'eventos:mis_eventos' %}" class="nav-link px-2 link-dark">Mis Eventos</a></li>
+          {% endif %}
+            
           <li><a href="#" class="nav-link px-2 link-dark">Recursos</a></li>
       </ul>
 

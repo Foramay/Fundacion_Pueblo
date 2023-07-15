@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Eventos
+from .models import Eventos, MisEventos
 from .forms import EventosForm
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -35,3 +35,14 @@ class Eliminar(LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('eventos:listar')
+    
+
+class ListarMisEventos(LoginRequiredMixin, ListView):
+    template_name = 'eventos/eventos_usuario.html'
+    model = MisEventos
+    context_object_name = 'mis_eventos'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(usuario_id=self.request.user.id)
+        return queryset

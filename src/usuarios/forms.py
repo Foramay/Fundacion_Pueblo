@@ -9,7 +9,6 @@ class UserRegisterForm(UserCreationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre de usuario', 'style': 'height: 50px;'}))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Contraseña', 'style': 'height: 50px;'}))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Repeti la contraseña', 'style': 'height: 50px;'}))
-    telefono = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Repeti la contraseña', 'style': 'height: 50px;'}))
     class Meta:
         model = Usuario
         fields = ['first_name', 'last_name', 'email', 'username', 'password1', 'password2']

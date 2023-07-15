@@ -1,4 +1,6 @@
 from django.db import models
+from usuarios.models import Usuario
+
 
 class Eventos(models.Model):
     nombre = models.CharField(max_length=30, null=False, blank=True)
@@ -8,3 +10,11 @@ class Eventos(models.Model):
 
     def __str__(self):
         return self.nombre, self.descripcion, self.fecha_evento
+    
+class MisEventos(models.Model):
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    evento = models.ForeignKey(Eventos, on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return self.comentarios
