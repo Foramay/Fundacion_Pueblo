@@ -9,5 +9,6 @@ urlpatterns = [
     path('actualizar/<int:pk>', views.Actualizar.as_view(), name='actualizar'),
     path('eliminar/<int:pk>', views.Eliminar.as_view(), name='eliminar'),
     path('mis_eventos/', views.ListarMisEventos.as_view(), name='mis_eventos'),
-    path('participar/', views.participar, name='participar')
+    path('participar/', views.participar, name='participar'),
+    path('dejar_de_participar/', views.dejar_de_participar, name='dejar_de_participar')
 ]

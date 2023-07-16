@@ -69,3 +69,18 @@ def participar(request):
     else:
         #Este else funciona para que si el usuario no esta logueado, lo redireccione al loguin y después lo lleve a la url de listar
         return redirect('eventos:listar')
+    
+@login_required
+def dejar_de_participar(request):
+    if request.method == 'POST':
+        #Recupero el id del usuario
+        usuario = request.user.id
+        #Recupero el id del evento que desea dejar de participar
+        evento_id = request.POST['evento_id']
+        #Hago un filtrado por el evento mediante el filter
+        mis_eventos = MisEventos.objects.filter(id=evento_id, usuario_id=usuario)
+        #Y borro el registro
+        mis_eventos.delete()
+        return redirect('eventos:listar')
+    else:
+        return redirect('eventos:listar')
