@@ -61,10 +61,15 @@ def participar(request):
         usuario = request.user.id
         #Obtenemos el id del evento que quiere participar el usuario logueado y lo guardamos en una variable.
         evento_id = request.POST['evento_id']
-        #Creamos una instancia del modelo 'MisEventos' para poder guardar las variables en los campos correspondientes.
-        mis_eventos = MisEventos(evento_id=evento_id, usuario_id=usuario)
-        #Y al final de todo, guardamos.
-        mis_eventos.save()
+        #Buscamos el id del evento para saber si esta participando o no.
+        existe_evento = MisEventos.objects.filter(evento_id=evento_id, usuario_id=usuario).exists()
+        if existe_evento:
+            print("Ya estás participando.")
+        else:
+            #Creamos una instancia del modelo 'MisEventos' para poder guardar las variables en los campos correspondientes.
+            mis_eventos = MisEventos(evento_id=evento_id, usuario_id=usuario)
+            #Y al final de todo, guardamos.
+            mis_eventos.save()
         return redirect('eventos:mis_eventos')
     else:
         #Este else funciona para que si el usuario no esta logueado, lo redireccione al loguin y después lo lleve a la url de listar

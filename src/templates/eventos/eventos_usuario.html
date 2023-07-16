@@ -28,12 +28,9 @@
                             <div class="card-body">
                                 <p class="card-text">{{evento.obtener_info.descripcion}}</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <form action="{% url 'eventos:dejar_de_participar' %}" method="POST"> {% csrf_token %}
-                                        <div class="btn-group">
-                                            <input type="hidden" name="evento_id" value="{{ evento.id }}">
-                                            <button type="submit" class="btn btn-sm btn-outline-danger">Dejar de Participar</button>
-                                        </div>
-                                    </form>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-danger">Dejar de Participar</button>
+                                </div>
                                 
                                 
                                 </div>
