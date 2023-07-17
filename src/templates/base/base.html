@@ -72,7 +72,7 @@
             <li><a href="{% url 'eventos:mis_eventos' %}" class="nav-link px-2 link-dark">Mis Eventos</a></li>
           {% endif %}
             
-          <li><a href="#" class="nav-link px-2 link-dark">Recursos</a></li>
+          <li><a href="{% url 'recursos:recursos' %}" class="nav-link px-2 link-dark">Recursos</a></li>
       </ul>
 
       {% if user.is_authenticated %}

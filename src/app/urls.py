@@ -15,5 +15,8 @@ urlpatterns = [
     path('eventos/', include('eventos.urls')),
 
     #Includes de la App 'eventos'
-    path('usuarios/', include('usuarios.urls'))
+    path('usuarios/', include('usuarios.urls')),
+
+    #Includes de la App 'recursos'
+    path('recursos/', include('recursos.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
