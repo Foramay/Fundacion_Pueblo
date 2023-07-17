@@ -4,5 +4,6 @@ from . import views
 app_name = 'recursos'
 
 urlpatterns = [
-    path('recursos/', views.ListarRecursos.as_view(), name='recursos' )
+    path('recursos/', views.ListarRecursos.as_view(), name='recursos' ),
+    path('crear_recurso/', views.CrearRecurso.as_view(), name='crear_recurso' )
 ]

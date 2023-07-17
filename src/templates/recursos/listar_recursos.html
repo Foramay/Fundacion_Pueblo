@@ -3,8 +3,14 @@
 {% block contenido %}
 
 <div class="container">
-    
-    {% if user.is_authenticated %}
+    {% if user.is_staff %}
+        <div class="alert alert-success" role="alert" style="text-align: center;">
+            <h1>Hola, {{user}}</h1>
+            <a href="{% url 'recursos:crear_recurso' %}">
+                <button type="button" class="btn btn-sm btn-outline-success ">Crear Recurso</button>
+            </a>
+        </div> 
+    {% elif user.is_authenticated %}
         <div class="alert alert-warning" role="alert" style="text-align: center;">
             <h1>Hola, {{user}}. Bienvenido a los recursos.</h1>
         </div>
@@ -17,13 +23,13 @@
             </div>
     
         {% else %}
-            {% for recurso in recursos  %}
+            {% for r in recursos  %}
                 <main style="display: flex; align-items: center; justify-content: center;">
                     <div class="card">
-                        <h5 class="card-header">{{recurso.titulo}}</h5>
+                        <h5 class="card-header">{{r.titulo}}</h5>
                         <div class="card-body">
-                          <p class="card-text">{{recurso.descripcion}}</p>
-                          <a href="#" class="btn btn-outline-success">Descargar</a>
+                          <p class="card-text">{{r.descripcion}}</p>
+                          <a href="{{ r.recurso.url }}" class="btn btn-outline-success" download>Descargar</a>
                         </div>
                       </div>
                 </main>
