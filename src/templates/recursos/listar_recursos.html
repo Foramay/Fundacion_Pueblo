@@ -30,6 +30,14 @@
                         <div class="card-body">
                           <p class="card-text">{{r.descripcion}}</p>
                           <a href="{{ r.recurso.url }}" class="btn btn-outline-success" download>Descargar</a>
+                            {% if user.is_staff %}
+                                <a href="{% url 'recursos:editar' r.id %}">
+                                    <button type="button" class="btn btn-sm btn-outline-warning">Editar</button>
+                                </a>
+                                <a href="#">
+                                    <button type="button" class="btn btn-sm btn-outline-danger">Eliminar</button> 
+                                </a>
+                            {% endif %}
                         </div>
                       </div>
                 </main>
