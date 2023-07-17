@@ -34,7 +34,7 @@
                                 <a href="{% url 'recursos:editar' r.id %}">
                                     <button type="button" class="btn btn-sm btn-outline-warning">Editar</button>
                                 </a>
-                                <a href="#">
+                                <a href="{% url 'recursos:eliminar' r.id %}">
                                     <button type="button" class="btn btn-sm btn-outline-danger">Eliminar</button> 
                                 </a>
                             {% endif %}
