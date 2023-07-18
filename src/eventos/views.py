@@ -21,6 +21,7 @@ class ListarEvents(ListView):
     template_name = 'eventos/listar_eventos.html'
     model = Eventos
     context_object_name = 'eventos'
+    paginate_by = 5
 
 class Actualizar(LoginRequiredMixin, UpdateView):
     template_name = 'eventos/actualizar.html'

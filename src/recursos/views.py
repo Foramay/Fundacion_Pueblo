@@ -10,6 +10,7 @@ class ListarRecursos(ListView):
     template_name = 'recursos/listar_recursos.html'
     model = Recursos
     context_object_name = 'recursos'
+    paginate_by = 5
 
 class CrearRecurso(LoginRequiredMixin, CreateView):
     model = Recursos
