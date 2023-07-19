@@ -18,6 +18,9 @@
                     <a href="{% url 'usuarios:editar_perfil' p.id %}">
                         <button type="button" class="btn btn-outline-warning">Editar</button>
                     </a>
+                    <a href="{% url 'usuarios:eliminar_perfil' p.id %}">
+                        <button type="button" class="btn btn-outline-danger">Eliminar</button>
+                    </a>
                 {% endif %}
                     
             </div>

@@ -7,5 +7,6 @@ app_name = 'usuarios'
 urlpatterns = [
     path('registro/', views.Registro.as_view(), name='registro'),
     path('perfil/', views.Perfil.as_view(), name='perfil'),
-    path('editar_perfil/<int:pk>', views.EditarPerfil.as_view(), name='editar_perfil')
+    path('editar_perfil/<int:pk>', views.EditarPerfil.as_view(), name='editar_perfil'),
+    path('eliminar_perfil/<int:pk>', views.EliminarPerfil.as_view(), name='eliminar_perfil')
 ]

@@ -1,4 +1,4 @@
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 from .models import Usuario
 from .forms import UserRegisterForm
@@ -44,3 +44,11 @@ class EditarPerfil(LoginRequiredMixin, UpdateView):
         user = form.save()
         login(self.request, user)
         return response
+    
+
+class EliminarPerfil(LoginRequiredMixin, DeleteView):
+    model = Usuario
+    template_name = 'usuarios/eliminar_perfil.html'
+
+    def get_success_url(self):
+        return reverse('eventos:listar')
