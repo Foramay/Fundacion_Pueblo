@@ -13,6 +13,13 @@
                     <h1>{{p.last_name}}</h1>
                     <h1>{{p.email}}</h1>
                 </div>
+                
+                {% if user.is_authenticated %}
+                    <a href="{% url 'usuarios:editar_perfil' p.id %}">
+                        <button type="button" class="btn btn-outline-warning">Editar</button>
+                    </a>
+                {% endif %}
+                    
             </div>
         </div>
     
