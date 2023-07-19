@@ -11,7 +11,7 @@ class UserRegisterForm(UserCreationForm):
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Repeti la contraseña', 'style': 'height: 50px;'}))
     class Meta:
         model = Usuario
-        fields = ['first_name', 'last_name', 'email', 'username', 'password1', 'password2']
+        fields = ['first_name', 'last_name', 'email', 'username', 'password1', 'password2', 'foto_perfil']
 
     def clean_nombre(self):
         nombre = self.cleaned_data['nombre']
