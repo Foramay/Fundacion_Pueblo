@@ -1,0 +1,24 @@
+{% extends 'base/base.html' %}
+
+{% block contenido %}
+<main class="d-flex justify-content-center">
+    
+    {% for p in perfil %}
+        <div class="container">
+            <div class="row">
+                <div class="col-12 my-3 pt-3 shadow">
+                    <img src="#" class="float-left rounded-circle mr-2">
+                    <h1>{{p.username}}</h1>
+                    <h1>{{p.first_name}}</h1>
+                    <h1>{{p.last_name}}</h1>
+                    <h1>{{p.email}}</h1>
+                </div>
+            </div>
+        </div>
+    
+    {% endfor %}
+    
+  </main>
+  
+{% endblock contenido %}
+    

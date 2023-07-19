@@ -1,6 +1,5 @@
-from django.forms.models import BaseModelForm
-from django.http import HttpResponse
 from django.views.generic.edit import CreateView
+from django.views.generic import ListView
 from .models import Usuario
 from .forms import UserRegisterForm
 from django.urls import reverse
@@ -20,3 +19,11 @@ class Registro(CreateView):
         user = form.save()
         login(self.request, user)
         return response
+
+class Perfil(ListView):
+    model = Usuario
+    template_name = 'usuarios/perfil.html'
+    context_object_name = 'perfil'
+    #Esta funcion queryset filtra todos los registros dependiendo de que usuario este logueado
+    def get_queryset(self):
+        return Usuario.objects.filter(id=self.request.user.id)
