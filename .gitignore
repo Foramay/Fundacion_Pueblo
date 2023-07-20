@@ -1,6 +1,7 @@
 *.pyc
 src/app/settings/local.py
 src/media/imagenes_evento
+src/media/foto_perfil
 *.png
 *.jpg
 *.jpeg
