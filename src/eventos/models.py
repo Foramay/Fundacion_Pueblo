@@ -4,7 +4,8 @@ from usuarios.models import Usuario
 
 class Eventos(models.Model):
     nombre = models.CharField(max_length=30, null=False, blank=True)
-    descripcion = models.TextField(max_length=255, null=False, blank=True)
+    descripcion_corta = models.CharField(max_length=30)
+    descripcion_completa = models.TextField(null=False, blank=True)
     fecha_evento = models.DateField(auto_now_add=True)
     imagen = models.ImageField(upload_to='imagenes_evento', null=True, blank=True)
 

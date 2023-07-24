@@ -9,7 +9,7 @@ class EventosForm(forms.ModelForm):
     imagen = forms.ImageField(widget=ClearableFileInput(attrs={'class': 'form-control-file'}), label=_('Imagen: '))
     class Meta:
         model = Eventos
-        fields = ['nombre', 'descripcion', 'imagen']
+        fields = ['nombre', 'descripcion_corta', 'descripcion_completa', 'imagen']
 
     def clean_nombre(self):
         nombre = self.cleaned_data['nombre']
