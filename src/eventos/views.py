@@ -90,3 +90,11 @@ def dejar_de_participar(request):
         return redirect('eventos:listar')
     else:
         return redirect('eventos:listar')
+    
+
+def ver(request, pk):
+    template_name = 'eventos/ver_mas.html'
+    ctx = {
+        'eventos': Eventos.objects.filter(id=pk)
+    }
+    return render(request, template_name, ctx)

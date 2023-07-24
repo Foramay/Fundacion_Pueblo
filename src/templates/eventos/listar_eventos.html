@@ -45,6 +45,9 @@
                                     <div class="float-end">
                                         <input type="hidden" name="evento_id" value="{{ e.id }}">
                                         <button type="submit" class="btn btn-sm btn-outline-success">Participar</button>
+                                        <a href="{% url 'eventos:ver_mas' e.id %}">
+                                            <button type="button" class="btn btn-sm btn-outline-dark">Ver más</button>
+                                        </a>
                                     </div>
                                     </form>
                             {% if user.is_staff %}

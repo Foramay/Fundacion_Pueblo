@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block contenido %}
+
+<div class="container">
+    <h1>Ber</h1>
+            {% for evento in eventos  %}
+                <main style="display: flex; align-items: center; justify-content: center;">
+                    <div class="album py-5 bg-body-tertiary">
+                    <div class="container">
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+                              <div class="col-md-4">
+                                {% if evento.imagen %}
+                                    <img src="{{evento.imagen.url}}" class="img-fluid rounded-start" alt="...">
+                                {% else %}
+                                    <img src="{% static 'img/defaults/default_image.jpg' %}" class="img-fluid rounded-start" alt="...">
+                                {% endif %}
+                              </div>
+                              <div class="col-md-8">
+                                <div class="card-body">
+                                  <h5 class="card-title">{{evento.nombre}}</h5>
+                                  <p class="card-text">{{evento.descripcion}}</p>
+
+                                  <form action="{% url 'eventos:participar' %}" method="POST"> {% csrf_token %}
+                                    <div class="float-end">
+                                        <input type="hidden" name="evento_id" value="{{ evento.id }}">
+                                        <button type="submit" class="btn btn-sm btn-outline-success">Participar</button>
+                                    </div>
+                                    </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                    </div>
+                
+                </main>
+            {% endfor %}
+
+{% endblock contenido %}
+    
