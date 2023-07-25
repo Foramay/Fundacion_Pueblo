@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Eventos, MisEventos
+from .models import Eventos, MisEventos, Comentario
 from .forms import EventosForm
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -94,7 +94,14 @@ def dejar_de_participar(request):
 
 def ver(request, pk):
     template_name = 'eventos/ver_mas.html'
+    #Filtramos el evento dependiendo del id
+    evento = Eventos.objects.filter(id=pk)
+    #Filtramos todos los comentarios que tiene el evento dependiendo el pk que recibimos
+    comentario = Comentario.objects.filter(evento_id=pk)
     ctx = {
-        'eventos': Eventos.objects.filter(id=pk)
+        #creamos un diccionario y lo pasamos al html
+        'eventos': evento,
+        'comentarios': comentario
     }
     return render(request, template_name, ctx)
+

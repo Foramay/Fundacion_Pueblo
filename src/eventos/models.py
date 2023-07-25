@@ -11,6 +11,14 @@ class Eventos(models.Model):
 
     def __str__(self):
         return self.nombre
+class Comentario(models.Model):
+    evento = models.ForeignKey(Eventos, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    comentario = models.TextField()
+    fecha_comentario = models.DateTimeField(auto_now_add=True)
+
+    def obtener_info(self):
+        return self.evento
     
 class MisEventos(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
