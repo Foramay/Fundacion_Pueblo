@@ -95,13 +95,41 @@ def dejar_de_participar(request):
 def ver(request, pk):
     template_name = 'eventos/ver_mas.html'
     #Filtramos el evento dependiendo del id
-    evento = Eventos.objects.filter(id=pk)
+    evento = Eventos.objects.get(id=pk)
     #Filtramos todos los comentarios que tiene el evento dependiendo el pk que recibimos
     comentario = Comentario.objects.filter(evento_id=pk)
     ctx = {
         #creamos un diccionario y lo pasamos al html
-        'eventos': evento,
+        'evento': evento,
         'comentarios': comentario
     }
     return render(request, template_name, ctx)
 
+def comentario(request, pk):
+    if request.method == 'POST':
+        #Obtenemos el comentario con el metodo POST
+        comentario = request.POST.get('comentario')
+        #Obtenemos el id del evento con el metodo GET y recibimos como parametro desde el html el pk
+        evento_id = Eventos.objects.get(pk=pk)
+        #Obtenemos el id del usuario logueado
+        usuario_id = request.user.id
+        #Creamos una instancia del modelo comentario y le pasamos como argumentos los resultados obtenidos
+        comentario_instancia = Comentario(comentario=comentario, evento_id=evento_id.id, usuario_id=usuario_id)
+        #Guardamos
+        comentario_instancia.save()
+        #Acá lo que sigue es renderizar de nuevo en el html del evento en el que estamos
+        #Y para eso recupero el id del evento nuevamente y aprovechamos el pk
+        evento = Eventos.objects.get(id=pk)
+        #Recuperamos todos los comentarios del evento a través de el pk del evento
+        comentario = Comentario.objects.filter(evento_id=pk)
+        #Decimos con que html vamos a trabajar
+        template_name = 'eventos/ver_mas.html'
+        #Le pasamos el contexto
+        ctx = {
+            'evento': evento,
+            'comentarios': comentario
+        }
+        #Y retornamos
+        return render(request, template_name, ctx)
+    else:
+        return render(request, template_name, ctx)
