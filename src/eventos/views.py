@@ -105,6 +105,7 @@ def ver(request, pk):
     }
     return render(request, template_name, ctx)
 
+@login_required
 def comentario(request, pk):
     if request.method == 'POST':
         #Obtenemos el comentario con el metodo POST
