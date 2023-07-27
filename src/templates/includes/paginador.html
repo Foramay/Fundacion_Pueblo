@@ -1,0 +1,33 @@
+<div class="row mt-3 justify-content-center">
+    <nav>
+        <ul class="pagination">
+            <!--Pagina anterior-->
+            {% if comentarios.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1">Primera</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{comentarios.previous_page_number}}">&laquo;</a>
+                </li>
+            {% endif %}
+            <!--Todas las paginas de los comentarios-->
+            
+            {% for pagina in total_paginas %}
+                <li class="page-item{% if pagina_actual == pagina %} active {% endif %}">
+                    <a class="page-link" href="?page={{pagina}}">{{pagina}}</a>
+                </li>
+            {% endfor %}
+                
+            <!--Pagina siguiente-->
+            {% if comentarios.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{comentarios.next_page_number}}">&raquo;</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{comentarios.paginator.num_pages}}">Ultima</a>
+                </li>
+            {% endif %}
+                
+        </ul>
+    </nav>
+</div>

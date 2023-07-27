@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
-
+from django.core.paginator import Paginator
 
 class Crear(LoginRequiredMixin, CreateView):
     models = Eventos
@@ -96,12 +96,19 @@ def ver(request, pk):
     template_name = 'eventos/ver_mas.html'
     #Filtramos el evento dependiendo del id
     evento = Eventos.objects.get(id=pk)
-    #Filtramos todos los comentarios que tiene el evento dependiendo el pk que recibimos
+    #Obtenemos todos los comentarios que tiene el evento dependiendo el pk que recibimos
     comentario = Comentario.objects.filter(evento_id=pk)
+    paginator = Paginator(comentario, 2)
+    pagina = request.GET.get('page') or 1
+    comentarios = paginator.get_page(pagina)
+    pagina_actual = int(pagina)
+    total_paginas = range(1, comentarios.paginator.num_pages + 1)
     ctx = {
         #creamos un diccionario y lo pasamos al html
         'evento': evento,
-        'comentarios': comentario
+        'comentarios': comentarios,
+        'total_paginas': total_paginas,
+        'pagina_actual': pagina_actual
     }
     return render(request, template_name, ctx)
 
