@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Eventos, MisEventos, Comentario
 from .forms import EventosForm
@@ -125,19 +125,4 @@ def comentario(request, pk):
         comentario_instancia = Comentario(comentario=comentario, evento_id=evento_id.id, usuario_id=usuario_id)
         #Guardamos
         comentario_instancia.save()
-        #Acá lo que sigue es renderizar de nuevo en el html del evento en el que estamos
-        #Y para eso recupero el id del evento nuevamente y aprovechamos el pk
-        evento = Eventos.objects.get(id=pk)
-        #Recuperamos todos los comentarios del evento a través de el pk del evento
-        comentario = Comentario.objects.filter(evento_id=pk)
-        #Decimos con que html vamos a trabajar
-        template_name = 'eventos/ver_mas.html'
-        #Le pasamos el contexto
-        ctx = {
-            'evento': evento,
-            'comentarios': comentario
-        }
-        #Y retornamos
-        return render(request, template_name, ctx)
-    else:
-        return render(request, template_name, ctx)
+        return redirect('eventos:ver_mas', pk=pk)
