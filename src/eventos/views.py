@@ -126,3 +126,5 @@ def comentario(request, pk):
         #Guardamos
         comentario_instancia.save()
         return redirect('eventos:ver_mas', pk=pk)
+    else:
+        return redirect('eventos:ver_mas', pk=pk)
