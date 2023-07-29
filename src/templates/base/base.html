@@ -85,10 +85,14 @@
         <button type="button" class="btn btn-outline-danger">Logout</button>
       </a>
       {% else %}
-      
+
+      {% url 'login' as login %}
+      {% if not request.path == login %}
         <a href="{% url 'login' %}">
           <button type="button" class="btn btn-outline-success">Login</button>
         </a>
+      {% endif %}
+        
       {% endif %}
       </div>
   </div>
