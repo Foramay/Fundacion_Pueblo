@@ -40,6 +40,7 @@
                                 <div class="card-body">
                                   <h5 class="card-title">{{e.nombre}}</h5>
                                   <p class="card-text">{{e.descripcion_corta}}</p>
+                                  <p class="card-text">Modalidad: {{ e.get_modalidad_display }}</p>
 
                                   <form action="{% url 'eventos:participar' %}" method="POST"> {% csrf_token %}
                                     <div class="float-end">
