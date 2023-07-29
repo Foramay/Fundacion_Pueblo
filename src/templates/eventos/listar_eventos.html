@@ -52,51 +52,55 @@
             </div>
     
         {% else %}
-            {% for e in eventos  %}
-                <main style="display: flex; align-items: center; justify-content: center;">
-                    <div class="album py-5 bg-body-tertiary">
-                    <div class="container">
-                        <div class="card mb-3" style="max-width: 540px;">
-                            <div class="row g-0">
-                              <div class="col-md-4">
-                                {% if e.imagen %}
-                                    <img src="{{e.imagen.url}}" class="img-fluid rounded-start" alt="...">
-                                {% else %}
-                                    <img src="{% static 'img/defaults/default_image.jpg' %}" class="img-fluid rounded-start" alt="...">
-                                {% endif %}
-                              </div>
-                              <div class="col-md-8">
-                                <div class="card-body">
-                                  <h5 class="card-title">{{e.nombre}}</h5>
-                                  <p class="card-text">{{e.descripcion_corta}}</p>
-                                  <p class="card-text">Modalidad: {{ e.get_modalidad_display }}</p>
-
-                                  <form action="{% url 'eventos:participar' %}" method="POST"> {% csrf_token %}
-                                    <div class="float-end">
-                                        <input type="hidden" name="evento_id" value="{{ e.id }}">
-                                        <button type="submit" class="btn btn-sm btn-outline-success">Participar</button>
-                                        <a href="{% url 'eventos:ver_mas' e.id %}">
-                                            <button type="button" class="btn btn-sm btn-outline-dark">Ver más</button>
-                                        </a>
-                                    </div>
-                                    </form>
+            <main>
+                <h1 class="visually-hidden">Features examples</h1>
+                <div class="b-example-divider"></div>
+                <div class="container px-4 py-5" id="custom-cards">
+                <div class="row row-cols-lg-3 align-items-stretch g-4 py-5">
+                {% for e in eventos  %}
+                    <div class="col">
+                        {% if e.imagen %}
+                            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('{{e.imagen.url}}');">
+                        {% endif %}
+                        <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+                          <h3 class="pt-5 mt-5 mb-4 display-2 lh-1 fw-bold" style="color: #F6F4EB;">{{e.nombre}}</h3>
+                          <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" style="color: #F4F2DE;">{{e.descripcion_corta}}</h3>
+                          <ul class="d-flex list-unstyled mt-auto">
+                            
+                            <li class="d-flex align-items-center me-3">
+                              <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                              <small>{{ e.get_modalidad_display }}</small>
+                            </li>
+                            <li class="d-flex align-items-center">
+                              <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>
+                              <small>{{e.fecha_evento}}</small>
+                            </li>
+                          </ul>
+                          <!---->
+                            <form action="{% url 'eventos:participar' %}" method="POST"> {% csrf_token %}
+                                <div class="float-end">
+                                    <input type="hidden" name="evento_id" value="{{ e.id }}">
+                                    <button type="submit" class="btn btn-sm btn-success">Participar</button>
+                                    <a href="{% url 'eventos:ver_mas' e.id %}">
+                                        <button type="button" class="btn btn-sm btn-dark">Ver más</button>
+                                    </a>
+                                </div>
+                            </form>
                             {% if user.is_staff %}
                                 <a href="{% url 'eventos:actualizar' e.id %}">
-                                    <button type="button" class="btn btn-sm btn-outline-warning">Editar</button>
+                                    <button type="button" class="btn btn-sm btn-warning">Editar</button>
                                 </a>
                                 <a href="{% url 'eventos:eliminar' e.id %}">
-                                    <button type="button" class="btn btn-sm btn-outline-danger">Eliminar</button> 
+                                    <button type="button" class="btn btn-sm btn-danger">Eliminar</button> 
                                 </a>
                             {% endif %}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                        </div>
+                      </div>
                     </div>
-                    </div>
-                
-                </main>
-            {% endfor %}
+                    {% endfor %}
+                  </div>
+                </div>
+            </main>
 
 
                 
