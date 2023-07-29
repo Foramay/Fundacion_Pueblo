@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from .filters import FiltrarEvento
 
 class Crear(LoginRequiredMixin, CreateView):
     models = Eventos
@@ -23,6 +24,16 @@ class ListarEvents(ListView):
     context_object_name = 'eventos'
     paginate_by = 5
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        eventos_filter = FiltrarEvento(self.request.GET, queryset=queryset)
+        return eventos_filter.qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = FiltrarEvento(self.request.GET, queryset=self.get_queryset())
+        return context
+    
 class Actualizar(LoginRequiredMixin, UpdateView):
     template_name = 'eventos/actualizar.html'
     model = Eventos

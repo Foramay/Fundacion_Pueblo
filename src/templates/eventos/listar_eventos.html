@@ -16,6 +16,35 @@
         </div>
     {% endif %}
 </div>
+
+<div class="container">
+    <div class="form-container">
+        <form method="get">
+            {{ filter.form.as_p }}
+            <button type="submit">Filtrar</button>
+        </form>
+    </div>
+</div>
+
+{% if is_paginated %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endif %}
     <div class="container">
         {% if not eventos %}
             <div class="alert alert-warning" role="alert" style="text-align: center;">
