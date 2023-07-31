@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{% static 'css/offcanvas-navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/features.css' %}">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/filter.css' %}">
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -80,19 +81,25 @@
           {% endif %}
       </ul>
 
+      {% url 'eventos:listar' as listar %}
+      {% if request.path == listar %}
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Buscar Evento
+        </button>
+      {% endif %}
+        
+        
       {% if user.is_authenticated %}
       <a href="{% url 'logout' %}">
         <button type="button" class="btn btn-outline-danger">Logout</button>
       </a>
       {% else %}
-
-      {% url 'login' as login %}
-      {% if not request.path == login %}
-        <a href="{% url 'login' %}">
-          <button type="button" class="btn btn-outline-success">Login</button>
-        </a>
-      {% endif %}
-        
+        {% url 'login' as login %}
+        {% if not request.path == login %}
+          <a href="{% url 'login' %}">
+            <button type="button" class="btn btn-outline-success">Login</button>
+          </a>
+        {% endif %}
       {% endif %}
       </div>
   </div>
@@ -106,8 +113,9 @@
 </main>
 
 
-  <script src="{% static 'js/bootstrap.js' %}" type="text-javascript"></script>
-  <script src="{% static 'js/offcanvas-navbar.js' %}" type="text-javascript"></script>
+<script src="{% static 'js/bootstrap.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/offcanvas-navbar.js' %}" type="text/javascript"></script>
+
       
   </body>
 </html>
