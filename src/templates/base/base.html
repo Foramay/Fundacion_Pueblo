@@ -1,14 +1,19 @@
 {% load static %}
 <!doctype html>
-<html lang="en">
-  <head>
+<html lang="en" data-bs-theme="auto">
+  <head><script src="../assets/js/color-modes.js"></script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.84.0">
-    <title>Headers · Bootstrap v5.0</title>
+    <meta name="generator" content="Hugo 0.112.5">
+    <title>Fundacion Pueblo</title>
 
+
+    
+
+    
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'css/headers.css' %}">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
@@ -16,27 +21,17 @@
     <link rel="stylesheet" href="{% static 'css/features.css' %}">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/filter.css' %}">
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
 
     
     <!-- Custom styles for this template -->
     <link href="headers.css" rel="stylesheet">
   </head>
   <body>
+    
+
+    
+
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -61,61 +56,70 @@
     <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
   </symbol>
 </svg>
-<header class="p-3 mb-3 border-bottom">
-  <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="{% url 'home' %}" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
-      </a>
 
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+<main>
+  <h1 class="visually-hidden">Headers examples</h1>
+
+  <header class="p-3 mb-3 border-bottom">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="{% url 'home' %}" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="{% url 'home' %}" class="nav-link px-2 link-secondary">Home</a></li>
           <li><a href="{% url 'eventos:listar' %}" class="nav-link px-2 link-dark">Eventos</a></li>
-          
           {% if user.is_authenticated %}
             <li><a href="{% url 'eventos:mis_eventos' %}" class="nav-link px-2 link-dark">Mis Eventos</a></li>
           {% endif %}
             <li><a href="{% url 'recursos:recursos' %}" class="nav-link px-2 link-dark">Recursos</a></li>
-          {% if user.is_authenticated %}
-            <li><a href="{% url 'usuarios:perfil' %}" class="nav-link px-2 link-dark">{{user}}</a></li>  
-          {% endif %}
-      </ul>
+        </ul>
 
-      {% url 'eventos:listar' as listar %}
-      {% if request.path == listar %}
-        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Buscar Evento
-        </button>
-      {% endif %}
-        
-        
-      {% if user.is_authenticated %}
-      <a href="{% url 'logout' %}">
-        <button type="button" class="btn btn-outline-danger">Logout</button>
-      </a>
-      {% else %}
-        {% url 'login' as login %}
-        {% if not request.path == login %}
-          <a href="{% url 'login' %}">
-            <button type="button" class="btn btn-outline-success">Login</button>
-          </a>
+        {% url 'eventos:listar' as listar %}
+        {% if request.path == listar %}
+          <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+           Buscar Evento
+          </button>
         {% endif %}
-      {% endif %}
+
+        {% if user.is_authenticated %}
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+          </a>
+          <ul class="dropdown-menu text-small">
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'usuarios:perfil' %}" class="dropdown-item">{{user}}</a></li>  
+            {% endif %}
+            <li><hr class="dropdown-divider"></li>
+              <a href="{% url 'logout' %}">
+                <button type="button" class="btn btn-outline-danger">Cerrar Sesión</button>
+              </a>
+            {% else %}
+              {% url 'login' as login %}
+              {% if not request.path == login %}
+                <a href="{% url 'login' %}">
+                  <button type="button" class="btn btn-outline-success">Login</button>
+                </a>
+              {% endif %}
+          </ul>
+        </div>
+        {% endif %}
+
       </div>
-  </div>
+    </div>
   </header>
-<main>
+
+{% block contenido %}
   
-    {% block contenido%}
-
-    {% endblock contenido %}
-
+{% endblock contenido %}
+  
+  
 </main>
-
-
 <script src="{% static 'js/bootstrap.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/offcanvas-navbar.js' %}" type="text/javascript"></script>
 
-      
-  </body>
+
+    </body>
 </html>
