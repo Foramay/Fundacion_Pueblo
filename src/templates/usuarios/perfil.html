@@ -4,33 +4,30 @@
 <main class="d-flex justify-content-center">
     
     {% for p in perfil %}
-        <div class="container">
-            <div class="row">
-                <div class="col-12 my-3 pt-3 shadow">
-                    
-                    {% if p.foto_perfil %}
-                        <img src="{{p.foto_perfil.url}}" class="float-left rounded-circle mr-2">
-                    {% else %}
-                        <img src="{% static 'img/defaults/defaul_person.png' %}" class="float-left rounded-circle mr-2">
-                    {% endif %}
-                        
-                    <h1>{{p.username}}</h1>
-                    <h1>{{p.first_name}}</h1>
-                    <h1>{{p.last_name}}</h1>
-                    <h1>{{p.email}}</h1>
-                </div>
-                
-                {% if user.is_authenticated %}
-                    <a href="{% url 'usuarios:editar_perfil' p.id %}">
-                        <button type="button" class="btn btn-outline-warning">Editar</button>
-                    </a>
-                    <a href="{% url 'usuarios:eliminar_perfil' p.id %}">
-                        <button type="button" class="btn btn-outline-danger">Eliminar</button>
-                    </a>
-                {% endif %}
-                    
-            </div>
+    <div class="card" style="width: 18rem;">
+        {% if p.foto_perfil %}
+            <img src="{{p.foto_perfil.url}}" class="float-left  mr-2">
+        {% else %}
+            <img src="{% static 'img/defaults/defaul_person.png' %}" class="float-left rounded-circle mr-2">
+        {% endif %}        
+       
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Nombre de usuario: {{p.username}}</li>
+          <li class="list-group-item">Nombre: {{p.first_name}}</li>
+          <li class="list-group-item">Apellido: {{p.last_name}}</li>
+          <li class="list-group-item">Email: {{p.email}}</li>
+        </ul>
+        <div class="card-body">
+            {% if user.is_authenticated %}
+            <a href="{% url 'usuarios:editar_perfil' p.id %}">
+                <button type="button" class="btn btn-outline-warning">Editar</button>
+            </a>
+            <a href="{% url 'usuarios:eliminar_perfil' p.id %}">
+                <button type="button" class="btn btn-outline-danger">Eliminar</button>
+            </a>
+        {% endif %}
         </div>
+      </div>
     
     {% endfor %}
     
