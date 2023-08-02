@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="{% static 'css/features.css' %}">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/filter.css' %}">
+    <link rel="stylesheet" href="{% static 'css/heroes.css' %}">
+    <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
 
 
     
@@ -93,9 +95,12 @@
             <li><a href="{% url 'usuarios:perfil' %}" class="dropdown-item">{{user}}</a></li>  
             {% endif %}
             <li><hr class="dropdown-divider"></li>
-              <a href="{% url 'logout' %}">
-                <button type="button" class="btn btn-outline-danger">Cerrar Sesión</button>
-              </a>
+             
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#logout">
+                  Cerrar Sesión
+                </button>
+             
             {% else %}
               {% url 'login' as login %}
               {% if not request.path == login %}
@@ -114,7 +119,22 @@
 {% block contenido %}
   
 {% endblock contenido %}
-  
+<div class="modal fade" id="logout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">¿Estás seguro de salir?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-footer">
+        <a href="{% url 'logout' %}">
+          <button type="button" class="btn btn-danger">Cerrar Sesión</button>
+        </a>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
+      </div>
+    </div>
+  </div>
+</div>
   
 </main>
 <script src="{% static 'js/bootstrap.js' %}" type="text/javascript"></script>
